@@ -1,9 +1,12 @@
 from tkinter import *
 import requests
-from bs4 import *
+from bs4 import BeautifulSoup
 from functools import partial
-def download(link):
-    print(link)
+global trs
+
+
+    
+
 def scrape():
     
     bookname=e1.get()
@@ -20,12 +23,13 @@ def scrape():
         title=tr.find_all('td')[2].a.text
         Label(w,text=author).grid(row=i,column=1)
         Label(w,text=title).grid(row=i,column=2)
+
         Button(w,text='download',command=partial(download,i)).grid(row=i,column=3)
         
-    """for i in range(1,len(trs)):
-        soup=trs[i]
-        print(soup)
-    for i in range(5):"""
+def download(link):
+    print(trs[link])
+
+
     
 r=Tk()
 r.title("Book Downloader")
@@ -37,3 +41,5 @@ e1.grid(row=0,column=1)
 submitbutton=Button(w,text="Search",command=scrape)
 
 submitbutton.grid(row=0,column=2)
+
+r.mainloop()
